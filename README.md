@@ -1,5 +1,5 @@
 # PrimaRepository
 ## Repository ITS Incom
-Questa è una repository con parte dei programmi eseguiti durante il biennio di formazione presso ITS Incom, Busto Arsizio (VA)
+This is a repository with part of the programmes carried out during the two-year training period at ITS Incom, Busto Arsizio (VA)
 
-Contiene SQL, Python, PowerShell e alcuni project work realizzati per la valutazione delle conoscenze.
+It contains SQL, Python, PowerShell and some project work carried out for knowledge evaluation.

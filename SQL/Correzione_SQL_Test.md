@@ -88,9 +88,9 @@
     create procedure schema.sp_insertJson
     
     
-    @colore     varchar(20)  not null
-    @animaleNome   varchar(20) = null
-    @animaleSpecie varchar(20) = null
+    @colore     varchar(20) 
+    @animaleNome   varchar(20) 
+    @animaleSpecie varchar(20) 
 
     as
 
@@ -111,8 +111,8 @@
        json_modify(json_modify('{}','$.nome,@animaleNome),
                     '$.specie', @animaleSpecie) 
     
-
-    set @j = json_modify('{}','$.id')
+    update schema.Json
+    --set @j = json_modify('{}','$.id')
     set @j = json_modify(json_modify(@j,'$.colore',@colore),'append$.animali',json_query(@jAnimali))
 
     --select @j
@@ -134,3 +134,15 @@ exec schema.sp_insertJson @colore = 'giallo', @animaleNome = 'pluto'
     2. To avoid automatic escaping, provide newValue by using the JSON_QUERY function.
 
 
+## Aggiungere primary key su schema.JSON
+    alter table schema.json
+    add constrain pk_colore primary key (Colore)
+
+    alter table schema.json
+    add column Colore  as (isnull(json_value(j,'$.colore),''))
+
+    OSSERVAZIONE
+    1. nvarchar(max) non è indicizzabile
+    2. Pk è case insensitive per come lo abbiamo fatto
+    3. Pk clustered impone un ordine dei dati basato sul clustered
+##
